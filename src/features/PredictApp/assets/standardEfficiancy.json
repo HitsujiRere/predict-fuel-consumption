@@ -1,0 +1,29 @@
+[
+  {
+    "year": "2015",
+    "japan_km/L": 16.8,
+    "japan_mpg": 39.5,
+    "usa_mpg": 35,
+    "usa_km/L": 14.9,
+    "eu_mpg": 45.2,
+    "eu_km/L": 19.2
+  },
+  {
+    "year": "2020",
+    "japan_km/L": 20.3,
+    "japan_mpg": 47.7,
+    "usa_mpg": 39.3,
+    "usa_km/L": 16.7,
+    "eu_mpg": 61.9,
+    "eu_km/L": 26.3
+  },
+  {
+    "year": "2025",
+    "japan_km/L": 25.4,
+    "japan_mpg": 59.7,
+    "usa_mpg": 48.9,
+    "usa_km/L": 20.8,
+    "eu_mpg": 78.3,
+    "eu_km/L": 33.3
+  }
+]
