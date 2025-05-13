@@ -4,7 +4,7 @@ import type { Parameter } from "../types/Parameter";
 // Coefficient
 // biome-ignore format: Do not format!
 const coef = [
-   1.2920e+2, -1.5142e+1, -1.4912e-1, -3.7988e-1, 
+   1.1960e+2, -1.5142e+1, -1.4912e-1, -3.7988e-1, 
    2.7916e-2, -5.6165e+0,  1.0941e+0, -5.3317e-2,
    1.10878-1, -1.1719e-3,  3.9248e-1, -1.6342e-5, 
    1.3074e-3,  8.4603e-5,  1.1231e-3, -1.7662e-3,
