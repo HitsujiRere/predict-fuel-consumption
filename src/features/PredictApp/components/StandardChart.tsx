@@ -1,4 +1,5 @@
 import { CompositeChart } from "@mantine/charts";
+import { toFixed } from "../../../utils/toFixed";
 import standardEfficiancy from "../assets/standardEfficiancy.json";
 
 export type StandardChartProps = {
@@ -7,7 +8,7 @@ export type StandardChartProps = {
 
 export const StandardChart = ({ prediction }: StandardChartProps) => {
   const scaledPrediction =
-    prediction !== undefined ? Math.round(prediction * 10) / 10 : undefined;
+    prediction !== undefined ? toFixed(prediction, 1) : undefined;
 
   const data = standardEfficiancy.map((row) => ({
     ...row,
