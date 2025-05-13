@@ -20,7 +20,7 @@ export const StandardChart = ({ prediction }: StandardChartProps) => {
       withLegend
       curveType="monotone"
       dataKey="year"
-      yAxisLabel="mpg"
+      yAxisLabel="km/L"
       series={[
         {
           name: "prediction",
