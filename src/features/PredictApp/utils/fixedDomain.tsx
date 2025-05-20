@@ -1,11 +1,14 @@
 type Data = Record<string, unknown>[];
 
-export const fixedDomain = (data: Data, key: string): [number, number] => {
+export const fixedDomain = (
+  data: Data,
+  { ignores }: { ignores: string[] },
+): [number, number] => {
   const min = Math.min(
     ...data.map((row) =>
       Math.min(
         ...Object.entries(row)
-          .filter(([i]) => i !== key)
+          .filter(([key]) => !ignores.includes(key))
           .map(([, x]) => x)
           .filter((x) => typeof x === "number"),
       ),
@@ -16,7 +19,7 @@ export const fixedDomain = (data: Data, key: string): [number, number] => {
     ...data.map((row) =>
       Math.max(
         ...Object.entries(row)
-          .filter(([i]) => i !== key)
+          .filter(([key]) => !ignores.includes(key))
           .map(([, x]) => x)
           .filter((x) => typeof x === "number"),
       ),

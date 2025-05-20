@@ -44,10 +44,8 @@ export const PredictApp = () => {
       <div>
         <Title order={2}>Changes</Title>
         <SimpleGrid type="container" cols={{ base: 1, "600px": 2, "900px": 3 }}>
-          <ChangesChart parameter={parameter} name="cylinders" />
           <ChangesChart parameter={parameter} name="displacement" />
           <ChangesChart parameter={parameter} name="horsepower" />
-          <ChangesChart parameter={parameter} name="weight" />
           <ChangesChart parameter={parameter} name="acceleration" />
         </SimpleGrid>
       </div>

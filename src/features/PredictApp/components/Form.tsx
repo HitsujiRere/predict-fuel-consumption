@@ -7,10 +7,8 @@ import type { Parameter } from "../types/Parameter";
 import { LoadMenu } from "./LoadMenu";
 
 const formSchema = z.object({
-  cylinders: z.number().int().min(1),
   displacement: z.number().min(1),
   horsepower: z.number().min(1),
-  weight: z.number().min(1),
   acceleration: z.number().min(1),
 });
 
@@ -38,13 +36,6 @@ export const Form = ({ onChange }: FormProps) => {
 
         <SimpleGrid type="container" cols={{ base: 1, "600px": 2, "900px": 3 }}>
           <NumberInput
-            label="Cylinders"
-            description="Number of engine cylinders"
-            key={form.key("cylinders")}
-            {...form.getInputProps("cylinders")}
-            allowNegative={false}
-          />
-          <NumberInput
             label="Displacement"
             description="Engine displacement (in cubic inches)"
             suffix=" cu in"
@@ -61,14 +52,6 @@ export const Form = ({ onChange }: FormProps) => {
             allowNegative={false}
           />
           <NumberInput
-            label="Weight"
-            description="Vehicle weight (in pounds)"
-            suffix=" lb"
-            key={form.key("weight")}
-            {...form.getInputProps("weight")}
-            allowNegative={false}
-          />
-          <NumberInput
             label="Acceleration"
             description="0-60mph acceleration time (in seconds)"
             suffix=" sec"
@@ -78,7 +61,7 @@ export const Form = ({ onChange }: FormProps) => {
           />
         </SimpleGrid>
 
-        <Button type="submit" size="lg" leftSection={<TbArrowDown />}>
+        <Button type="submit" leftSection={<TbArrowDown />}>
           Predict!
         </Button>
       </Stack>

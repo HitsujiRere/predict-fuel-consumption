@@ -1,47 +1,55 @@
-import { Matrix } from "ml-matrix";
 import type { Parameter } from "../types/Parameter";
 import { mpgToKmPL } from "./convertUnits";
 
-// Coefficient
-// biome-ignore format: Do not format!
-const coef = [
-   1.1960e+2, -1.5142e+1, -1.4912e-1, -3.7988e-1, 
-   2.7916e-2, -5.6165e+0,  1.0941e+0, -5.3317e-2,
-   1.10878-1, -1.1719e-3,  3.9248e-1, -1.6342e-5, 
-   1.3074e-3,  8.4603e-5,  1.1231e-3, -1.7662e-3,
-  -1.3002e-4,  1.3294e-2, -2.6554e-6, -7.0916e-4, 
-   1.2671e-1,
+// intercept coefficient
+const intercept = -46.014853;
+
+// 1-degree coefficients
+const coefficients1 = [-0.489686, 1.508819, 14.839985];
+
+// 2-degree coefficients
+const coefficients2 = [
+  -0.005079, 0.018526, 0.039993, -0.017776, -0.168853, -0.752744,
 ];
 
-// Constant term
-const r = coef[0];
-
-// Linear term
-const p = Matrix.rowVector(coef.slice(1, 6));
-
-// Quadratic term matrix
-// biome-ignore format: Format 5x5 matrix
-const Q = new Matrix([
-  [coef[ 6],   coef[ 7]/2, coef[ 8]/2, coef[ 9]/2, coef[10]/2],
-  [coef[ 7]/2, coef[11],   coef[12]/2, coef[13]/2, coef[14]/2],
-  [coef[ 8]/2, coef[12]/2, coef[15],   coef[16]/2, coef[17]/2],
-  [coef[ 9]/2, coef[13]/2, coef[16]/2, coef[18],   coef[19]/2],
-  [coef[10]/2, coef[14]/2, coef[17]/2, coef[19]/2, coef[20]]
-]);
-
-console.log({ Q, p, r });
+// 3-degree coefficients
+const coefficients3 = [
+  0.000002, 0.000007, 0.000167, -0.000057, -0.000435, -0.001597, 0.000067,
+  0.000308, 0.005279, 0.01254,
+];
 
 export const predictFuelConsumption = (param: Parameter) => {
-  const A = Matrix.columnVector([
-    param.cylinders,
-    param.displacement,
-    param.horsepower,
-    param.weight,
-    param.acceleration,
-  ]);
+  // parameters
+  const A = [param.displacement, param.horsepower, param.acceleration];
 
-  // A^T Q A + p A + r
-  const mpg = A.transpose().mmul(Q).mmul(A).get(0, 0) + p.mmul(A).get(0, 0) + r;
+  const n = A.length;
+
+  let predicted1 = 0.0;
+  for (let i = 0; i < n; i++) {
+    predicted1 += A[i] * coefficients1[i];
+  }
+
+  let predicted2 = 0.0;
+  let index2 = 0;
+  for (let i = 0; i < n; i++) {
+    for (let j = i; j < n; j++) {
+      predicted2 += A[i] * A[j] * coefficients2[index2];
+      index2++;
+    }
+  }
+
+  let predicted3 = 0.0;
+  let index3 = 0;
+  for (let i = 0; i < n; i++) {
+    for (let j = i; j < n; j++) {
+      for (let k = j; k < n; k++) {
+        predicted3 += A[i] * A[j] * A[k] * coefficients3[index3];
+        index3++;
+      }
+    }
+  }
+
+  const mpg = intercept + predicted1 + predicted2 + predicted3;
 
   return mpgToKmPL(mpg);
 };

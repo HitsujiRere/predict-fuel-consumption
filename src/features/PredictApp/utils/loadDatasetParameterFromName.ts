@@ -9,10 +9,8 @@ export const loadDatasetParameterFromName = (
     return undefined;
   }
   return {
-    cylinders: data.cylinders,
     displacement: data.displacement,
     horsepower: data.horsepower ?? 0,
-    weight: data.weight,
     acceleration: data.acceleration,
   };
 };

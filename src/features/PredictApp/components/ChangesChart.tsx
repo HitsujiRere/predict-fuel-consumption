@@ -2,8 +2,8 @@ import { LineChart } from "@mantine/charts";
 import { toFixed } from "../../../utils/toFixed";
 import standardEfficiancy from "../assets/standardEfficiancy.json";
 import type { Parameter } from "../types/Parameter";
-import { predictFuelConsumption } from "../utils/predictFuelConsumption";
 import { fixedDomain } from "../utils/fixedDomain";
+import { predictFuelConsumption } from "../utils/predictFuelConsumption";
 
 export type StandardChartProps = {
   parameter?: Parameter;
@@ -30,7 +30,7 @@ export const ChangesChart = ({ parameter, name }: StandardChartProps) => {
       dataKey="param"
       xAxisLabel={name}
       yAxisLabel="km/L"
-      yAxisProps={{ domain: fixedDomain(data, "param") }}
+      yAxisProps={{ domain: fixedDomain(data, { ignores: ["param"] }) }}
       series={[
         {
           name: "prediction",

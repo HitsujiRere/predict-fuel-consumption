@@ -23,7 +23,7 @@ export const StandardChart = ({ prediction }: StandardChartProps) => {
       curveType="monotone"
       dataKey="year"
       yAxisLabel="km/L"
-      yAxisProps={{ domain: fixedDomain(data, "key") }}
+      yAxisProps={{ domain: fixedDomain(data, { ignores: ["key"] }) }}
       series={[
         {
           name: "prediction",
