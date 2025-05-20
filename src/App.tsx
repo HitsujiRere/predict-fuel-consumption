@@ -8,7 +8,7 @@ import "@mantine/charts/styles.css";
 
 export const App = () => {
   return (
-    <Container size="md" p="md">
+    <Container size="xl" p="md">
       <Stack>
         <Title order={1}>
           <Group align="center">

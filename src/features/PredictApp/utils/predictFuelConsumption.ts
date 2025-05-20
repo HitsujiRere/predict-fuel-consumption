@@ -1,5 +1,6 @@
 import { Matrix } from "ml-matrix";
 import type { Parameter } from "../types/Parameter";
+import { mpgToKmPL } from "./convertUnits";
 
 // Coefficient
 // biome-ignore format: Do not format!
@@ -40,5 +41,7 @@ export const predictFuelConsumption = (param: Parameter) => {
   ]);
 
   // A^T Q A + p A + r
-  return A.transpose().mmul(Q).mmul(A).get(0, 0) + p.mmul(A).get(0, 0) + r;
+  const mpg = A.transpose().mmul(Q).mmul(A).get(0, 0) + p.mmul(A).get(0, 0) + r;
+
+  return mpgToKmPL(mpg);
 };

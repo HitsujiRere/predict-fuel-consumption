@@ -1,6 +1,7 @@
 import { CompositeChart } from "@mantine/charts";
 import { toFixed } from "../../../utils/toFixed";
 import standardEfficiancy from "../assets/standardEfficiancy.json";
+import { fixedDomain } from "../utils/fixedDomain";
 
 export type StandardChartProps = {
   prediction?: number;
@@ -22,6 +23,7 @@ export const StandardChart = ({ prediction }: StandardChartProps) => {
       curveType="monotone"
       dataKey="year"
       yAxisLabel="km/L"
+      yAxisProps={{ domain: fixedDomain(data, "key") }}
       series={[
         {
           name: "prediction",
