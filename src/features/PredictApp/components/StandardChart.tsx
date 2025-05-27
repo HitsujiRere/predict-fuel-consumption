@@ -46,7 +46,7 @@ export const StandardChart = ({ prediction }: StandardChartProps) => {
         {
           name: "usa_km/L",
           type: "line",
-          label: "the United state in America",
+          label: "the United States of America",
           color: "indigo",
         },
       ]}
