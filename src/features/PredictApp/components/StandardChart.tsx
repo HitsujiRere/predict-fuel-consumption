@@ -34,7 +34,7 @@ export const StandardChart = ({ prediction }: StandardChartProps) => {
         {
           name: "eu_km/L",
           type: "line",
-          label: "EU",
+          label: "the EU",
           color: "red",
         },
         {
